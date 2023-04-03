@@ -19,6 +19,7 @@ from rest_framework import routers
 from django.conf.urls import include
 from items.api.viewsets import ItemViewSet
 from categories.api.viewsets import CategoryViewSet
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 router.register(r'items', ItemViewSet)
@@ -26,4 +27,5 @@ router.register(r'categories', CategoryViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api-token-auth/', obtain_auth_token),
 ]
