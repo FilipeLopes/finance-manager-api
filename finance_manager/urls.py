@@ -21,11 +21,18 @@ from items.api.viewsets import ItemViewSet
 from categories.api.viewsets import CategoryViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
+from users.views import UserDetailAPI, RegisterUserAPIView, UserLogInAPI, UserLogoutAPI
+
 router = routers.DefaultRouter()
 router.register(r'items', ItemViewSet)
 router.register(r'categories', CategoryViewSet)
 urlpatterns = [
-    path('', include(router.urls)),
+    path('financemanager/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path("financemanager/get-details/", UserDetailAPI.as_view()),
+    path('financemanager/register/', RegisterUserAPIView.as_view()),
+    path('financemanager/login/', UserLogInAPI.as_view()),
+    path('financemanager/logout/', UserLogoutAPI.as_view()),
+
     path('api-token-auth/', obtain_auth_token),
 ]
